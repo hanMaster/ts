@@ -10,7 +10,7 @@ async function getFaqs(req: {topicId: number; status?: Status}): Promise<{
     tags: string[];
     likes: number;
     status: Status
-}> {
+}[]> {
 	const res = await fetch('/faqs', {
 		method: 'POST',
 		body: JSON.stringify(req)
