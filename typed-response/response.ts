@@ -1,15 +1,17 @@
-interface PaymentRequest {
+interface Payment {
     sum: number;
     from: number;
     to: number;
 }
+
+interface PaymentRequest extends Payment {}
 
 enum PaymentStatus {
     SUCCESS = 'success',
     FAILED = 'failed',
 }
 
-interface SuccessPayload extends PaymentRequest {
+interface SuccessPayload extends Payment {
     databaseId: number;
 }
 
@@ -18,7 +20,12 @@ interface FailedPayload {
     errorCode: number;
 }
 
-interface PaumentResponse {
-    status: PaymentStatus;
-    data: SuccessPayload | FailedPayload;
+interface SuccessResponse {
+    status: PaymentStatus.SUCCESS;
+    data: SuccessPayload;
+}
+
+interface FailedResponse {
+    status: PaymentStatus.FAILED;
+    data: FailedPayload;
 }
