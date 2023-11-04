@@ -1,5 +1,5 @@
 function isSuccessResponse(res: SuccessResponse | FailedResponse): res is SuccessResponse {
-    return 'databaseId' in res.data;
+    return res.status === PaymentStatus.SUCCESS && 'databaseId' in res.data;
 }
 
 function getDatabaseId(res: SuccessResponse | FailedResponse): number {
