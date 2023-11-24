@@ -1,5 +1,5 @@
 class User {
-    skills: string[];
+    skills: string[] = [];
 
     addSkill(skill: string): void;
     addSkill(skills: string[]): void;
