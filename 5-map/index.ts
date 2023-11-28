@@ -77,7 +77,7 @@ class Bucket {
 }
 
 class MyMap {
-    #buckets = this.clear();
+    #buckets: Bucket[] = this.clear();
 
     set(key: string, value: mapValue) {
         this.#buckets[this.#hash(key)].setItem(key, value);
