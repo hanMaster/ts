@@ -13,7 +13,7 @@ enum BloodGroup {
     AB_NEGATIVE = 'AB-',
     AB_POSITIVE = 'AB+',
     O_NEGATIVE = 'O-',
-    O_POSITIVE = 'O+',
+    O_POSITIVE = 'O+'
 }
 
 interface Hair {
