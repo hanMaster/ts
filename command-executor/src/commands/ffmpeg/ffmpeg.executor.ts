@@ -10,15 +10,18 @@ import { FileService } from "../../core/files/file.service";
 
 export class FfmpegExecutor extends CommandExecutor<FfmpegInput> {
 
+    private promptService = new PromptService();
+    private fileService = new FileService();
+
     constructor(logger: StreamLoggerInterface) {
         super(logger);
     }
 
     protected async receiveData(): Promise<FfmpegInput> {
-        const path = await PromptService.input<string>('Введите путь для сохранения файла', 'input');
-        const width = await PromptService.input<number>('Введите ширину', 'number');
-        const height = await PromptService.input<number>('Введите высоту', 'number');
-        const filename = await PromptService.input<string>('Введите имя файла', 'input');
+        const path = await this.promptService.input<string>('Введите путь для сохранения файла', 'input');
+        const width = await this.promptService.input<number>('Введите ширину', 'number');
+        const height = await this.promptService.input<number>('Введите высоту', 'number');
+        const filename = await this.promptService.input<string>('Введите имя файла', 'input');
         return {
             path, width, height, filename
         };
@@ -31,7 +34,7 @@ export class FfmpegExecutor extends CommandExecutor<FfmpegInput> {
     }
 
     protected spawnCommand(command: CommandExecInterface): ChildProcessWithoutNullStreams {
-        new FileService().deleteFileIfExist(command.args[command.args.length - 1]);
+        this.fileService.deleteFileIfExist(command.args[command.args.length - 1]);
         return spawn(command.command, [...command.args]);
     }
 
