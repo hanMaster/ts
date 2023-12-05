@@ -1,3 +1,5 @@
+import { FileService } from "../../core/files/file.service";
+
 export class FfmpegBuilder {
 
     private path: string = './';
@@ -25,7 +27,17 @@ export class FfmpegBuilder {
         return this;
     }
 
-    build(): string {
-        return `-i ${this.path} -c:v libx264 -s ${this.width}x${this.height} ${this.path}${this.filename}`;
+    build(): string[] {
+        const fullName = new FileService().getFilePath(this.path, this.filename);
+
+        const result = ['-i'];
+        result.push(this.path);
+        result.push('-c:v');
+        result.push('libx264');
+        result.push('-s');
+        result.push(`${this.width}x${this.height}`);
+        result.push(fullName);
+
+        return result;
     }
 }
