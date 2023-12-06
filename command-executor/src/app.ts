@@ -1,9 +1,9 @@
-import { FfmpegExecutor } from "./commands/ffmpeg/ffmpeg.executor";
-import { ConsoleLogger } from "./out/console-logger/console-logger";
+import { FfmpegExecutor } from './commands/ffmpeg/ffmpeg.executor';
+import { ConsoleLogger } from './out/console-logger/console-logger';
 
 class App {
     async run() {
-        const executor = new FfmpegExecutor(ConsoleLogger.getLogger()).execute();
+        new FfmpegExecutor(ConsoleLogger.getLogger()).execute();
     }
 }
 
